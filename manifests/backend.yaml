@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: backend
+  labels:
+    app: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: mrtc0/seccamp-2023-backend
+        ports:
+        - containerPort: 8000
+        env:
+        - name: ITEMS_API_ADDR
+          value: "http://items-api.api.svc.cluster.local"
+        - name: PAYMENTS_API_ADDR
+          value: "http://payments.payments.svc.cluster.local"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: backend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000

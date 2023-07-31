@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: items-api
+  namespace: api
+  labels:
+    app: items-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: items-api
+  template:
+    metadata:
+      labels:
+        app: items-api
+    spec:
+      containers:
+      - name: items-api
+        image: mrtc0/seccamp-2023-items-api
+        ports:
+        - containerPort: 9000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: items-api
+spec:
+  selector:
+    app: items-api
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 9000
