@@ -21,8 +21,8 @@ const (
 // proxy's port
 const proxyPort = 8080
 
-// payment's service port
-const paymentServicePort = 80
+// payment's container exposed port
+const paymentServicePort = 7000
 
 type Proxy struct{}
 
