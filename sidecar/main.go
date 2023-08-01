@@ -37,8 +37,17 @@ func (p *Proxy) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	p.writeResponse(w, res)
 }
 
+func isAllowedRequest(req *http.Request) bool {
+	// TODO: X-Internal-Token が設定されていれば true を返し、設定されていなければ false を返す
+	return true
+}
+
 // 受け取ったリクエストを paymentServicePort に転送する
 func (p *Proxy) forwardRequest(req *http.Request) (*http.Response, error) {
+	if !isAllowedRequest(req) {
+		return nil, fmt.Errorf("not allowed request")
+	}
+
 	proxyUrl, err := url.Parse(fmt.Sprintf("http://127.0.0.1:%d", paymentServicePort))
 	if err != nil {
 		return nil, err
