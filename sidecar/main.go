@@ -39,6 +39,8 @@ func (p *Proxy) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 func isAllowedRequest(req *http.Request) bool {
 	// TODO: X-Internal-Token が設定されていれば true を返し、設定されていなければ false を返す
+	// Hint: req.Header.Get("X-Internal-Token") でヘッダーの値を取得できる
+	// ref. https://pkg.go.dev/net/http#Header.Get
 	return true
 }
 

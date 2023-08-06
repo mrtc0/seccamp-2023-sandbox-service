@@ -9,3 +9,5 @@ build/push: build/docker
 run/local:
 	go run main.go
 
+test:
+	go test -v ./...
