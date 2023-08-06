@@ -72,3 +72,9 @@ $ curl -s 'http://localhost:9091/' | jq '.upstream_calls."http://localhost:9092"
 500
 ```
 
+## Cleanup
+
+```shell
+docker compose rm
+docker compose -f ./docker-compose.app-v2.yml rm
+```
