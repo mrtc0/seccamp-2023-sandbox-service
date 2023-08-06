@@ -1,0 +1,29 @@
+version: "3"
+services:
+  api_v2:
+    image: nicholasjackson/fake-service:v0.19.1
+    environment:
+      LISTEN_ADDR: 0.0.0.0:9092
+      MESSAGE: "Hello World"
+      NAME: "api-v2"
+      SERVER_TYPE: "http"
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.5
+  api_v2_proxy:
+    image: nicholasjackson/consul-envoy:1.14.4-v1.25.1
+    restart: always
+    environment:
+      CONSUL_HTTP_ADDR: 10.5.0.2:8500
+      CONSUL_GRPC_ADDR: 10.5.0.2:8502
+      SERVICE_CONFIG: /config/api_v2.hcl
+      CENTRAL_CONFIG_DIR: /central_config
+    volumes:
+      - "./service_config:/config"
+      - "./central_config:/central_config"
+    command: ["consul", "connect", "envoy","-sidecar-for", "api-v2"]
+    network_mode: "service:api_v2"
+networks:
+  vpcbr:
+    external:
+      name: seccamp-consul-circuit-breaker
