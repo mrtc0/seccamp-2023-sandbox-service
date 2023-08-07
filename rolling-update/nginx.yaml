@@ -29,3 +29,8 @@ spec:
         # command: ["nginx", "-no-exists-option"]
         ports:
         - containerPort: 80
+        readinessProbe:
+          httpGet:
+            port: 80
+            path: /
+          periodSeconds: 5
