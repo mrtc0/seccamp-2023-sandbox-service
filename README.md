@@ -16,6 +16,15 @@
 git clone https://github.com/mrtc0/seccamp-2023-sandbox-service
 ```
 
+## マイクロサービスのデプロイ
+
+**手元のクラスタ** にデプロイしてください。EKS へはデプロイしないでください。
+
+```shell
+$ kubectx local-cluster # クラスタ名は各自環境に合わせて指定
+$ ./setup.sh
+```
+
 ## EKS への接続
 
 共有した AWS クレデンシャルを設定しておいてください。
@@ -31,20 +40,13 @@ aws_region = ap-northeast-1
 次のコマンドで EKS への接続設定をして、`kubectl get pods` が成功すれば OK です。
 
 ```shell
-$ aws eks update-kubeconfig --name sandbox-seccamp --region ap-northeast-1
-Added new context arn:aws:eks:ap-northeast-1:...:cluster/sandbox-seccamp to /root/.kube/config
+$ aws eks update-kubeconfig --name sandbox-seccamp --region ap-northeast-1 --alias eks-seccamp
+Added new context eks-seccamp to /root/.kube/config
 
 $ kubectl get pods
 No resources found in default namespace.
-```
 
-## マイクロサービスのデプロイ
-
-**手元のクラスタ** にデプロイしてください。EKS へはデプロイしないでください。
-
-```shell
-$ kubectx local-cluster # クラスタ名は各自環境に合わせて指定
-$ ./setup.sh
+$ kubectx # クラスタ切り替え
 ```
 
 ## AWS CLI コンテナを使えるようにする
