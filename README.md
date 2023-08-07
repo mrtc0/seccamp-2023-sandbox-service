@@ -10,6 +10,12 @@
 - [AWS CLI](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/getting-started-install.html)
 - 手元で動作する Kubernetes クラスタ
 
+## clone
+
+```shell
+git clone https://github.com/mrtc0/seccamp-2023-sandbox-service
+```
+
 ## EKS への接続
 
 共有した AWS クレデンシャルを設定しておいてください。
