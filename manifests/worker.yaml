@@ -16,7 +16,7 @@ spec:
       labels:
         app: worker
     spec:
-      serviceAccountName: worker
+      # serviceAccountName: worker
       containers:
       - name: worker
         image: mrtc0/seccamp-2023-worker
