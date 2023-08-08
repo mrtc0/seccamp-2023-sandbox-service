@@ -25,6 +25,19 @@ $ kubectx local-cluster # クラスタ名は各自環境に合わせて指定
 $ ./setup.sh
 ```
 
+次のような表示になっていれば OK
+
+```shell
+$ kubectl get pods --all-namespaces
+NAMESPACE            NAME                                         READY   STATUS    RESTARTS   AGE
+api                  items-api-5777d68b86-z4jf6                   1/1     Running   0          58s
+back                 backend-54f856f447-hrddq                     1/1     Running   0          58s
+back                 backend-54f856f447-l857j                     1/1     Running   0          58s
+back                 backend-54f856f447-llbb8                     1/1     Running   0          58s
+payments             payments-794c777dd6-k2xd5                    1/1     Running   0          58s
+worker               worker-7b4b69f85f-96wkf                      1/1     Running   0          58s
+```
+
 ## サービスへのリクエスト
 
 図はスライドを参照。Ingress は省略しているので、`kubectl -n back port-forward svc/back 8000:80` のようにして、backend アプリケーションにリクエストを送信できるようにしておいてください。  
