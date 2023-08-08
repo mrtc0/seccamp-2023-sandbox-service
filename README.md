@@ -40,7 +40,7 @@ worker               worker-7b4b69f85f-96wkf                      1/1     Runnin
 
 ## サービスへのリクエスト
 
-図はスライドを参照。Ingress は省略しているので、`kubectl -n back port-forward svc/back 8000:80` のようにして、backend アプリケーションにリクエストを送信できるようにしておいてください。  
+図はスライドを参照。Ingress は省略しているので、`kubectl -n back port-forward svc/backend 8000:80` のようにして、backend アプリケーションにリクエストを送信できるようにしておいてください。  
 `/items` と `/payment` にリクエストを送ってそれぞれ、次のレスポンスが返ってくることを確認してください。
 
 ```shell
