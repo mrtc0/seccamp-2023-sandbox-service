@@ -88,7 +88,7 @@ aws sts assume-role-with-web-identity \
 
 ## 1. IMDS を利用して ECR リポジトリからイメージを取得
 
-🎯 目的: 侵害したコンテナから Node にアタッチされた IAM Role の権限で ECR リポジトリからイメージを取得する
+🎯 目的: 侵害したコンテナから Node にアタッチされた IAM Role の権限で ECR リポジトリからイメージを取得する  
 🚩 追加課題: イメージ内にある secrets.txt を取得しよう
 
 <details><summary>解説</summary>
@@ -197,7 +197,7 @@ secrets.txt
 
 ## 2. Node として認証する
 
-🎯 目的: 侵害したコンテナから Node にアタッチされた IAM Role の権限で Node として認証する
+🎯 目的: 侵害したコンテナから Node にアタッチされた IAM Role の権限で Node として認証する  
 🚩 追加課題: どういった横展開ができるか調べよう
 
 <details><summary>解説</summary>
