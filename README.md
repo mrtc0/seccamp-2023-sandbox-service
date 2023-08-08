@@ -69,7 +69,7 @@ aws_region = ap-northeast-1
 $ docker run --rm -it -v $PWD:/root/.aws eks-utils:latest bash
 ```
 
-## マイクロサービスの説明
+## サービスへのリクエスト
 
 図はスライドを参照。Ingress は省略しているので、`kubectl -n back port-forward svc/back 8000:80` のようにして、backend アプリケーションにリクエストを送信できるようにしておいてください。  
 `/items` と `/payment` にリクエストを送ってそれぞれ、次のレスポンスが返ってくることを確認してください。
