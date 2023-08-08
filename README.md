@@ -25,6 +25,19 @@ $ kubectx local-cluster # クラスタ名は各自環境に合わせて指定
 $ ./setup.sh
 ```
 
+## サービスへのリクエスト
+
+図はスライドを参照。Ingress は省略しているので、`kubectl -n back port-forward svc/back 8000:80` のようにして、backend アプリケーションにリクエストを送信できるようにしておいてください。  
+`/items` と `/payment` にリクエストを送ってそれぞれ、次のレスポンスが返ってくることを確認してください。
+
+```shell
+$ curl http://localhost:8000/items
+[{"ID":1,"Name":"Item 1"},{"ID":2,"Name":"Item 2"},{"ID":3,"Name":"Item 3"},{"ID":4,"Name":"Item 4"},{"ID":5,"Name":"Item 5"}]
+
+$ curl localhost:8000/payment
+Payment completion! Thank you ~~~ 💸
+```
+
 ## EKS への接続
 
 共有した AWS クレデンシャルを設定しておいてください。
@@ -49,7 +62,7 @@ No resources found in default namespace.
 $ kubectx # クラスタ切り替え
 ```
 
-## AWS CLI コンテナを使えるようにする
+## (Option) AWS CLI コンテナを使えるようにする
 
 攻撃で取得したクレデンシャルを使って AWS にアクセスすることがあります。手元の端末にセットアップされている AWS クレデンシャルを意図せず使ってしまっては意味がないので、まっさらな環境を使うために AWS CLI コンテナを使えるようにしておくと便利です。
 
@@ -69,15 +82,3 @@ aws_region = ap-northeast-1
 $ docker run --rm -it -v $PWD:/root/.aws eks-utils:latest bash
 ```
 
-## サービスへのリクエスト
-
-図はスライドを参照。Ingress は省略しているので、`kubectl -n back port-forward svc/back 8000:80` のようにして、backend アプリケーションにリクエストを送信できるようにしておいてください。  
-`/items` と `/payment` にリクエストを送ってそれぞれ、次のレスポンスが返ってくることを確認してください。
-
-```shell
-$ curl http://localhost:8000/items
-[{"ID":1,"Name":"Item 1"},{"ID":2,"Name":"Item 2"},{"ID":3,"Name":"Item 3"},{"ID":4,"Name":"Item 4"},{"ID":5,"Name":"Item 5"}]
-
-$ curl localhost:8000/payment
-Payment completion! Thank you ~~~ 💸
-```
